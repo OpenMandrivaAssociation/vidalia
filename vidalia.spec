@@ -1,5 +1,5 @@
 Name:           vidalia
-Version:        0.0.8
+Version:        0.0.14
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
@@ -7,7 +7,7 @@ License:        GPL
 Group:          Networking/Other
 URL:            http://www.vidalia-project.net/
 Source0:        http://vidalia-project.net/dist/vidalia-%{version}.tar.gz
-Source1:        http://vidalia-project.net/dist/vidalia-0.0.8.tar.gz.asc
+Source1:        http://vidalia-project.net/dist/vidalia-%{version}.tar.gz.asc
 Source2:        vidalia.desktop
 Patch0:         vidalia-paths.patch
 Requires:       tor
@@ -15,7 +15,6 @@ Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires:  desktop-file-utils
 BuildRequires:  doxygen
-BuildRequires:  gcc-c++
 BuildRequires:  qt4-devel
 BuildRequires:  qt4-linguist
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -36,8 +35,8 @@ you wish.
 %patch0 -p1
 
 %build
-export PATH=%{_prefix}/lib/qt4/bin:$PATH
-%{configure2_5x}
+export QTDIR=%{_prefix}/lib/qt4
+%{configure2_5x} --with-qt-dir=${QTDIR}
 %{make}
 (cd doc && %{_bindir}/doxygen)
 
