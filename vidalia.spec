@@ -17,7 +17,6 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  doxygen
 BuildRequires:  qt4-devel
 BuildRequires:  qt4-linguist
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Vidalia is a cross-platform controller GUI for Tor, built using the Qt 
