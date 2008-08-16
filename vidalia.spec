@@ -16,6 +16,7 @@ Requires(postun): desktop-file-utils
 BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
 BuildRequires:  doxygen
+BuildRequires:  openssl-devel
 BuildRequires:  qt4-devel
 BuildRequires:  qt4-linguist
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
