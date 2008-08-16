@@ -13,6 +13,7 @@ Patch0:         vidalia-paths.patch
 Requires:       tor
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
+BuildRequires:  cmake
 BuildRequires:  desktop-file-utils
 BuildRequires:  doxygen
 BuildRequires:  qt4-devel
