@@ -1,5 +1,5 @@
 Name:           vidalia
-Version:        0.1.7
+Version:        0.1.10
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
@@ -35,15 +35,16 @@ you wish.
 %prep
 %setup -q
 %patch0 -p1
-%{cmake}
 
 %build
-(cd build && %{make})
-(cd doc && %{_bindir}/doxygen)
+%cmake_qt4
+%make
+cd ../doc
+doxygen
 
 %install
 %{__rm} -rf %{buildroot}
-(cd build && %{makeinstall_std})
+%makeinstall_std -C build
 
 %{__install} -D -p -m 644 doc/vidalia.1 %{buildroot}%{_mandir}/man1/vidalia.1
 
@@ -80,5 +81,3 @@ you wish.
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
-
-
