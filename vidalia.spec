@@ -1,6 +1,6 @@
 Name:           vidalia
 Version:        0.1.10
-Release:        %mkrel 1
+Release:        %mkrel 2
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
 License:        GPLv2+
