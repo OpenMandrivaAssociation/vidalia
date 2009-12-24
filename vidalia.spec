@@ -8,7 +8,6 @@ Group:          Networking/Other
 URL:            http://www.vidalia-project.net/
 Source0:        http://vidalia-project.net:8001/vidalia/vidalia-%{version}.tar.gz
 Source1:        http://vidalia-project.net:8001/vidalia/vidalia-%{version}.tar.gz.asc
-Source2:        vidalia.desktop
 Patch0:         vidalia-paths.patch
 Requires:       tor
 Requires(post): desktop-file-utils
