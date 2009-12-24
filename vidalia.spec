@@ -1,6 +1,6 @@
 Name:           vidalia
-Version:        0.1.10
-Release:        %mkrel 2
+Version:        0.1.15
+Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
 License:        GPLv2+
@@ -49,26 +49,26 @@ doxygen
 %{__install} -D -p -m 644 doc/vidalia.1 %{buildroot}%{_mandir}/man1/vidalia.1
 
 %{_bindir}/desktop-file-install --vendor="" \
-  --remove-category="Application" \
   --add-category="X-MandrivaLinux-Internet-Other" \
-  --dir %{buildroot}%{_datadir}/applications %{SOURCE2}
+  --dir %{buildroot}%{_datadir}/applications \
+  %{buildroot}%{_datadir}/applications/*
 
-%{__install} -D -p -m 644 src/vidalia/res/16x16/tor-logo.png %{buildroot}%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%{__install} -D -p -m 644 src/vidalia/res/32x32/tor-logo.png %{buildroot}%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{__install} -D -p -m 644 src/vidalia/res/48x48/tor-logo.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
-%{__install} -D -p -m 644 src/vidalia/res/128x128/tor-logo.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
 %{__install} -D -p -m 644 src/vidalia/res/128x128/tor-logo.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%if %mdkversion < 200900
 %post
 %{update_desktop_database}
 %update_icon_cache hicolor
+%endif
 
+%if %mdkversion < 200900
 %postun
 %{clean_desktop_database}
 %clean_icon_cache hicolor
+%endif
 
 %files
 %defattr(0644,root,root,0755)
@@ -78,6 +78,8 @@ doxygen
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/icons/hicolor/16x16/apps/%{name}.png
+%{_datadir}/icons/hicolor/22x22/apps/%{name}.png
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.png
