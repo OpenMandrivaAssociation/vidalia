@@ -1,5 +1,5 @@
 Name:           vidalia
-Version:        0.1.15
+Version:        0.2.9
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
@@ -8,7 +8,7 @@ Group:          Networking/Other
 URL:            http://www.vidalia-project.net/
 Source0:        http://vidalia-project.net:8001/vidalia/vidalia-%{version}.tar.gz
 Source1:        http://vidalia-project.net:8001/vidalia/vidalia-%{version}.tar.gz.asc
-Patch0:         vidalia-paths.patch
+Patch0:         vidalia-0.2.9-fix-paths.patch
 Requires:       tor
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -38,47 +38,28 @@ you wish.
 %build
 %cmake_qt4
 %make
-cd ../doc
-doxygen
+# make the docs
+make doxygen
 
 %install
-%{__rm} -rf %{buildroot}
+rm -rf %{buildroot}
 %makeinstall_std -C build
 
-%{__install} -D -p -m 644 doc/vidalia.1 %{buildroot}%{_mandir}/man1/vidalia.1
+install -D -p -m 644 doc/vidalia.1 %{buildroot}%{_mandir}/man1/vidalia.1
 
-%{_bindir}/desktop-file-install --vendor="" \
+desktop-file-install --vendor="" \
   --add-category="X-MandrivaLinux-Internet-Other" \
   --dir %{buildroot}%{_datadir}/applications \
   %{buildroot}%{_datadir}/applications/*
 
-%{__install} -D -p -m 644 src/vidalia/res/128x128/tor-logo.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
-
 %clean
-%{__rm} -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post
-%{update_desktop_database}
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_desktop_database}
-%clean_icon_cache hicolor
-%endif
+rm -rf %{buildroot}
 
 %files
-%defattr(0644,root,root,0755)
-%doc CHANGELOG CREDITS HACKING INSTALL LICENSE LICENSE-GPLV2 LICENSE-GPLV3 LICENSE-LGPLV3 LICENSE-OPENSSL README doc/TODO doc/*.txt doc/html
-%attr(0755,root,root) %{_bindir}/vidalia 
-%{_mandir}/man1/%{name}.1*
+%defattr(-,root,root)
+%doc CHANGELOG CREDITS HACKING LICENSE README
+%doc build/doc/html
+%{_bindir}/vidalia
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
-%{_datadir}/icons/hicolor/16x16/apps/%{name}.png
-%{_datadir}/icons/hicolor/22x22/apps/%{name}.png
-%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
-%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
-%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons/hicolor/*/apps/%{name}.png 
+%{_mandir}/man1/%{name}.1*
