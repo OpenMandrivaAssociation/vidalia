@@ -1,13 +1,13 @@
 Name:           vidalia
-Version:        0.2.9
+Version:        0.2.10
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
 License:        GPLv2+
 Group:          Networking/Other
-URL:            http://www.vidalia-project.net/
-Source0:        http://vidalia-project.net:8001/vidalia/vidalia-%{version}.tar.gz
-Source1:        http://vidalia-project.net:8001/vidalia/vidalia-%{version}.tar.gz.asc
+URL:            http://www.torproject.org/projects/vidalia
+Source0:        http://www.torproject.org/dist/vidalia/%{name}-%{version}.tar.gz
+Source1:        http://www.torproject.org/dist/vidalia/%{name}-%{version}.tar.gz.asc
 Patch0:         vidalia-0.2.9-fix-paths.patch
 Requires:       tor
 Requires(post): desktop-file-utils
@@ -57,7 +57,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc CHANGELOG CREDITS HACKING LICENSE README
+%doc CHANGELOG CREDITS HACKING LICENSE README README.marble
 %doc build/doc/html
 %{_bindir}/vidalia
 %{_datadir}/applications/%{name}.desktop
