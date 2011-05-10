@@ -1,5 +1,5 @@
 Name:           vidalia
-Version:        0.2.10
+Version:        0.2.12
 Release:        %mkrel 1
 Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
@@ -7,8 +7,7 @@ License:        GPLv2+
 Group:          Networking/Other
 URL:            http://www.torproject.org/projects/vidalia
 Source0:        http://www.torproject.org/dist/vidalia/%{name}-%{version}.tar.gz
-Source1:        http://www.torproject.org/dist/vidalia/%{name}-%{version}.tar.gz.asc
-Patch0:         vidalia-0.2.9-fix-paths.patch
+#Source1:        http://www.torproject.org/dist/vidalia/%{name}-%{version}.tar.gz.asc
 Requires:       tor
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -18,7 +17,6 @@ BuildRequires:  doxygen
 BuildRequires:  openssl-devel
 BuildRequires:  qt4-devel
 BuildRequires:  qt4-linguist
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Vidalia is a cross-platform controller GUI for Tor, built using the Qt 
@@ -33,7 +31,6 @@ you wish.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %cmake_qt4
@@ -42,7 +39,6 @@ you wish.
 make doxygen
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 install -D -p -m 644 doc/vidalia.1 %{buildroot}%{_mandir}/man1/vidalia.1
