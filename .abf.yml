@@ -1,2 +1,4 @@
+removed_sources:
+  vidalia-0.2.15.tar.gz: dea1d2440d84e50c5c64c2662a4d035ba43ad8c4
 sources:
-  "vidalia-0.2.15.tar.gz": dea1d2440d84e50c5c64c2662a4d035ba43ad8c4
+  vidalia-0.2.21.tar.gz: 6e56b607685b21369e50364335fc0bbd59559100
