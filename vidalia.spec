@@ -5,7 +5,7 @@ Epoch:          0
 Summary:        Cross-platform controller GUI for Tor, built using the Qt framework
 License:        GPLv2+
 Group:          Networking/Other
-URL:            http://www.torproject.org/projects/vidalia
+URL:            https://www.torproject.org/projects/vidalia
 Source0:        http://www.torproject.org/dist/vidalia/%{name}-%{version}.tar.gz
 Requires:       tor
 Requires(post): desktop-file-utils
